@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick and Morty Quiz</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: #00ff00;
+            margin-top: 50px;
+        }
+        .container {
+            display: inline-block;
+            padding: 20px;
+            background: #111;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            max-width: 500px;
+        }
+        h1 {
+            color: #00ff00;
+        }
+        .question {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .btn {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 10px;
+        }
+        .correct {
+            background-color: #28a745;
+            color: white;
+        }
+        .wrong {
+            background-color: #dc3545;
+            color: white;
+        }
+        #quiz, #finalMessage {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Rick and Morty Quiz</h1>
+    <p>Only real geniuses can pass this! 😏</p>
+    <button class="btn" onclick="startQuiz()">Start Quiz</button>
+
+    <div id="quiz">
+        <div class="question" id="q1">
+            <p>1. What is Rick’s favorite drink?</p>
+            <button class="btn correct" onclick="nextQuestion(2)">Whiskey</button>
+            <button class="btn wrong" onclick="alert('Incorrect! You’re exiled to Jerry’s dimension.')">Orange Juice</button>
+        </div>
+
+        <div class="question" id="q2" style="display: none;">
+            <p>2. Who is the most useless character?</p>
+            <button class="btn correct" onclick="nextQuestion(3)">Jerry</button>
+            <button class="btn wrong" onclick="alert('Nope! Even Mr. Poopybutthole is more useful.')">Birdperson</button>
+        </div>
+
+        <div class="question" id="q3" style="display: none;">
+            <p>3. What’s the smartest decision you can make? 🤔</p>
+            <button class="btn correct" onclick="nextQuestion(4)">Saying YES to being my boyfriend!</button>
+            <button class="btn wrong" id="noBtn" onmouseover="moveButton()">Trusting Rick</button>
+        </div>
+
+        <div class="question" id="q4" style="display: none;">
+            <p>4. What is Morty’s main goal in life?</p>
+            <button class="btn correct" onclick="nextQuestion(5)">To survive Rick’s crazy adventures</button>
+            <button class="btn wrong" onclick="alert('Wrong! Morty’s existential crisis continues!')">To become a scientist like Rick</button>
+        </div>
+
+        <div class="question" id="q5" style="display: none;">
+            <p>5. Which dimension is known for having talking cats?</p>
+            <button class="btn correct" onclick="nextQuestion(6)">Dimension 35-C</button>
+            <button class="btn wrong" onclick="alert('Wrong! There are no talking dogs... just... you know... weird stuff.')">Dimension 45-A</button>
+        </div>
+
+        <div class="question" id="q6" style="display: none;">
+            <p>6. Who does Rick think is "the smartest man in the universe?"</p>
+            <button class="btn correct" onclick="nextQuestion(7)">Himself</button>
+            <button class="btn wrong" onclick="alert('You failed the Rick test!')">Professor Sycamore</button>
+        </div>
+
+        <div class="question" id="q7" style="display: none;">
+            <p>7. What is the name of the intergalactic police force in the show?</p>
+            <button class="btn correct" onclick="nextQuestion(8)">The Galactic Federation</button>
+            <button class="btn wrong" onclick="alert('Nope, it’s not "Space Cops"')">The Space Police</button>
+        </div>
+
+        <div class="question" id="q8" style="display: none;">
+            <p>8. Who killed the President of the United States in Season 3?</p>
+            <button class="btn correct" onclick="nextQuestion(9)">President Morty</button>
+            <button class="btn wrong" onclick="alert('Wrong! Try again Morty!')">Rick Sanchez</button>
+        </div>
+
+        <div class="question" id="q9" style="display: none;">
+            <p>9. What does Rick often say to calm Morty down?</p>
+            <button class="btn correct" onclick="nextQuestion(10)">“It’s gonna be okay, Morty!”</button>
+            <button class="btn wrong" onclick="alert('That’s not it, Morty!')">“Trust me, Morty, I know what I’m doing.”</button>
+        </div>
+
+        <div class="question" id="q10" style="display: none;">
+            <p>10. What’s the smartest decision you can make? (Again!)</p>
+            <button class="btn correct" onclick="showFinalMessage()">Saying YES to being my boyfriend!</button>
+            <button class="btn wrong" id="noBtn2" onmouseover="moveButton()">Running away to another dimension</button>
+        </div>
+    </div>
+
+    <div id="finalMessage" style="display: none;">
+        <h2>Congratulations! 🎉</h2>
+        <p>You passed the ultimate Rick and Morty test! Now, will you be my boyfriend? 💖</p>
+        <button class="btn correct" onclick="redirectToForm()">Yes!</button>
+    </div>
+</div>
+
+<script>
+    function startQuiz() {
+        document.querySelector("button").style.display = "none";
+        document.getElementById("quiz").style.display = "block";
+    }
+
+    function nextQuestion(num) {
+        document.getElementById("q" + (num - 1)).style.display = "none";
+        document.getElementById("q" + num).style.display = "block";
+    }
+
+    function showFinalMessage() {
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("finalMessage").style.display = "block";
+    }
+
+    function redirectToForm() {
+        // Redirect to the Google Form you provided
+        window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdPf0b-5W71dynBiTONGl3kqxUgw4bZcAb5iWJjf91DlSHJyw/viewform?usp=dialog";
+    }
+
+    function moveButton() {
+        let button = document.getElementById("noBtn");
+        let x = Math.random() * (window.innerWidth - 100);
+        let y = Math.random() * (window.innerHeight - 50);
+        button.style.left = x + "px";
+        button.style.top = y + "px";
+        alert('Wubba lubba dub dub! No escaping this love! 😆');
+    }
+
+    function moveButton2() {
+        let button = document.getElementById("noBtn2");
+        let x = Math.random() * (window.innerWidth - 100);
+        let y = Math.random() * (window.innerHeight - 50);
+        button.style.left = x + "px";
+        button.style.top = y + "px";
+        alert('Wubba lubba dub dub! Try harder to escape, Morty! 😆');
+    }
+</script>
+
+</body>
+</html>
