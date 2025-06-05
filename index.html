@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Accessing Device...</title>
+    <title>🔓 Accessing Device...</title>
     <style>
         body {
             margin: 0;
@@ -13,58 +13,100 @@
             padding: 20px;
             overflow: hidden;
         }
+
         #terminal {
             white-space: pre-wrap;
             line-height: 1.4;
         }
+
         .blink {
             animation: blink 1s step-start 0s infinite;
         }
+
         @keyframes blink {
             50% { opacity: 0; }
+        }
+
+        .flash {
+            animation: flash 0.1s infinite alternate;
+        }
+
+        @keyframes flash {
+            from { background-color: black; }
+            to { background-color: red; }
+        }
+
+        .shake {
+            animation: shake 0.2s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            20% { transform: translate(-1px, -2px) rotate(-1deg); }
+            40% { transform: translate(-3px, 0px) rotate(1deg); }
+            60% { transform: translate(3px, 2px) rotate(0deg); }
+            80% { transform: translate(1px, -1px) rotate(1deg); }
+            100% { transform: translate(-1px, 2px) rotate(-1deg); }
         }
     </style>
 </head>
 <body>
-<div id="terminal">Initializing hack tool<span class="blink">_</span></div>
+<div id="terminal">🔓 Initializing hack sequence<span class="blink">_</span></div>
+<audio id="sfx" src="https://www.soundjay.com/button/beep-10.mp3" preload="auto"></audio>
 
 <script>
     const terminal = document.getElementById("terminal");
+    const sfx = document.getElementById("sfx");
+
     const lines = [
-        "Establishing secure connection...",
-        "Bypassing firewall...",
-        "Accessing WhatsApp messages...",
-        "Decrypting photos...",
-        "Scanning contacts...",
-        "Uploading data to dark web...",
-        "Downloading memes...",
-        "Finalizing breach...",
+        "Connecting to WhatsApp database...",
+        "Injecting malware...",
+        "Root access granted...",
+        "Locating photo gallery...",
+        "Uploading selfies to Instagram...",
+        "Stealing your crush’s chats...",
+        "Activating front camera 📷...",
+        "Streaming live to hackers...",
+        "Virus injected successfully 💀",
+        "WARNING! DEVICE BREACHED ⚠️",
         "",
-        "⚠️ Your phone has been hacked.",
+        "📡 Sending your data to aliens...",
         "",
-        "Just kidding. Stop being nosy. 😎"
+        "❌ System meltdown initiated ❌",
+        "",
+        "🔒 Phone will self-destruct in 3...",
+        "2...",
+        "1...",
+        "",
+        "💥💥💥",
+        "",
+        "😂 Just kidding! Stop being nosy. 😎"
     ];
 
     let lineIndex = 0;
-    const delayBetweenLines = 1000;
 
     function typeNextLine() {
         if (lineIndex < lines.length) {
-            const currentLine = lines[lineIndex];
-            terminal.innerHTML += `\n${currentLine}`;
+            terminal.innerHTML += `\n${lines[lineIndex]}`;
+            sfx.play();
+            if (lines[lineIndex].includes("WARNING")) {
+                document.body.classList.add("flash");
+                document.body.classList.add("shake");
+            }
             lineIndex++;
-            setTimeout(typeNextLine, delayBetweenLines);
+            setTimeout(typeNextLine, 600);
         } else {
-            // Remove blinking cursor at the end
             document.querySelector(".blink").remove();
+            setTimeout(() => {
+                window.location.href = "https://youtu.be/dQw4w9WgXcQ"; // or your Instagram or funny link
+            }, 3000);
         }
     }
 
-    // Start typing after brief delay
     setTimeout(() => {
-        terminal.innerHTML = "Initializing hack tool...";
+        terminal.innerHTML = "🔓 Initializing hack sequence...";
         typeNextLine();
-    }, 1500);
+    }, 1200);
 </script>
 </body>
 </html>
