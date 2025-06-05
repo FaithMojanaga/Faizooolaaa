@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Wow. You Scanned It.</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
@@ -17,6 +17,8 @@
             height: 100vh;
             margin: 0;
             text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
         h1 {
             font-size: 4rem;
@@ -28,14 +30,29 @@
         img {
             margin-top: 2rem;
             width: 350px;
+            max-width: 90vw;
             border-radius: 12px;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Responsive styles for small/mobile screens */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            p {
+                font-size: 1.5rem;
+            }
+            img {
+                width: 90vw;
+                margin-top: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-<h1>Wow mannn You scanned it. Now what?</h1>
-<p>You really thought this was going somewhere?<br><strong>Shems 😎</strong></p>
-<img src="https://media.giphy.com/media/3orieUe6ejxSFxYCXe/giphy.gif" alt="Twerking Meme">
+    <h1>Wow mannn You scanned it. Now what?</h1>
+    <p>You really thought this was going somewhere?<br><strong>Shems 😎</strong></p>
+    <img src="https://media.giphy.com/media/3orieUe6ejxSFxYCXe/giphy.gif" alt="Twerking Meme" />
 </body>
 </html>
