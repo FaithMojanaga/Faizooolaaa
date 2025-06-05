@@ -1,223 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>💸 Sending Money Now...</title>
+    <meta charset="UTF-8">
+    <title>Wow. You Scanned It.</title>
     <style>
         body {
-            margin: 0;
-            background-color: black;
-            color: #00FF00;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 4vw;
-            padding: 4vw;
-            overflow: hidden;
+            background-color: #ff4081;
+            color: white;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             height: 100vh;
-            box-sizing: border-box;
-            user-select: none;
+            margin: 0;
+            text-align: center;
         }
-
-        #terminal {
-            white-space: pre-wrap;
-            line-height: 1.4;
-            overflow-y: auto;
-            max-height: 100vh;
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
-
-        @keyframes blink {
-            50% { opacity: 0; }
+        p {
+            font-size: 1.5rem;
         }
-        .blink {
-            animation: blink 1s step-start 0s infinite;
-        }
-
-        @keyframes flashRed {
-            0% { background-color: black; color: #00FF00; }
-            50% { background-color: red; color: #fff; }
-            100% { background-color: black; color: #00FF00; }
-        }
-
-        .flash {
-            animation: flashRed 0.15s infinite;
-        }
-
-        @keyframes flickerColors {
-            0% { color: #00ff00; }
-            20% { color: #00ffaa; }
-            40% { color: #00ff55; }
-            60% { color: #00ffcc; }
-            80% { color: #00ff11; }
-            100% { color: #00ff00; }
-        }
-        .flicker {
-            animation: flickerColors 0.4s infinite;
-        }
-
-        .jitter {
-            display: inline-block;
-            animation: jitterMove 0.1s infinite alternate;
-        }
-        @keyframes jitterMove {
-            0% { transform: translateX(0); }
-            50% { transform: translateX(2px); }
-            100% { transform: translateX(-2px); }
-        }
-
-        #cursor {
-            display: inline-block;
-            animation: blink 1s step-start 0s infinite, cursorFlicker 0.5s infinite alternate;
-        }
-        @keyframes cursorFlicker {
-            0% { color: #00ff00; font-size: 1em; }
-            50% { color: #ff0000; font-size: 1.3em; }
-            100% { color: #00ff00; font-size: 1em; }
-        }
-
-        .money-msg {
-            color: #39FF14;
-            font-weight: bold;
-            font-size: 6vw;
-            animation: flickerColors 0.6s infinite;
-            margin-top: 2em;
-        }
-
-        @media (min-width: 600px) {
-            body {
-                font-size: 16px;
-                padding: 20px;
-            }
-            .money-msg {
-                font-size: 36px;
-            }
+        img {
+            margin-top: 2rem;
+            width: 300px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
         }
     </style>
 </head>
 <body>
-<div id="terminal">💸 Initializing money transfer... <span id="cursor">_</span></div>
-
-<audio id="beep1" src="https://www.soundjay.com/button/beep-10.mp3" preload="auto"></audio>
-<audio id="beep2" src="https://www.soundjay.com/button/beep-07.mp3" preload="auto"></audio>
-<audio id="beep3" src="https://www.soundjay.com/button/beep-05.mp3" preload="auto"></audio>
-
-<script>
-    const terminal = document.getElementById("terminal");
-    const cursor = document.getElementById("cursor");
-
-    const beepSounds = [
-        document.getElementById('beep1'),
-        document.getElementById('beep2'),
-        document.getElementById('beep3')
-    ];
-
-    beepSounds.forEach(audio => audio.volume = 0.15);
-
-    function randomChars(length) {
-        const chars = '0123456789$#@%&*+-=!?';
-        let result = '';
-        for (let i = 0; i < length; i++) {
-            result += chars[Math.floor(Math.random() * chars.length)];
-        }
-        return result;
-    }
-
-    const lines = [
-        "Connecting to bank mainframe...",
-        "Bypassing encryption...",
-        "Accessing accounts...",
-        "Injecting transfer protocol...",
-        "Sending P1000 to wallet 76018609...",
-        randomChars(50),
-        "Confirming transaction on blockchain...",
-        "Broadcasting to nodes...",
-        "Transfer successful! Transaction ID: 0x9F8A7B6C",
-        "",
-        "Warning: suspicious activity detected!",
-        "",
-        "Initiating cover tracks...",
-        randomChars(60),
-        "System breach complete.",
-        "",
-        "Waiting for payment confirmation...",
-        "3...",
-        "2...",
-        "1...",
-    
-    ];
-
-    let lineIndex = 0;
-
-    function createGlitchLine(text) {
-        let result = '';
-        for (let i = 0; i < text.length; i++) {
-            const char = text[i];
-            const r = Math.random();
-            if (r < 0.15) {
-                result += `<span class="jitter flicker">${char}</span>`;
-            } else if (r < 0.3) {
-                result += `<span class="flicker">${char}</span>`;
-            } else {
-                result += char;
-            }
-        }
-        return result;
-    }
-
-    function playRandomBeeps() {
-        const count = Math.floor(Math.random() * 3) + 1;
-        for (let i = 0; i < count; i++) {
-            const beep = beepSounds[Math.floor(Math.random() * beepSounds.length)];
-            const clone = beep.cloneNode();
-            clone.volume = 0.15 + Math.random() * 0.1;
-            clone.playbackRate = 0.8 + Math.random() * 0.4;
-            clone.play().catch(() => {});
-        }
-    }
-
-    function typeNextLine() {
-        if (lineIndex < lines.length) {
-            let line = lines[lineIndex];
-            const isWarning = line.toLowerCase().includes("warning") || line.includes("💰");
-
-            const glitchLine = createGlitchLine(line);
-            terminal.innerHTML += `\n${glitchLine}`;
-
-            if (isWarning) {
-                document.body.classList.add("flash");
-            } else {
-                document.body.classList.remove("flash");
-            }
-
-            playRandomBeeps();
-
-            terminal.scrollTop = terminal.scrollHeight;
-            lineIndex++;
-
-            if (Math.random() > 0.5) {
-                cursor.style.color = '#ff0000';
-                cursor.style.fontSize = '1.4em';
-            } else {
-                cursor.style.color = '#00ff00';
-                cursor.style.fontSize = '1em';
-            }
-
-            setTimeout(typeNextLine, 400 + Math.random() * 300);
-        } else {
-            cursor.remove();
-            // Show the send money message after a small pause
-            setTimeout(() => {
-                const msg = document.createElement('div');
-                msg.className = 'money-msg flicker jitter';
-                msg.textContent = " SEND ME MONEY NOW!Ke ise ke lele";
-                document.body.appendChild(msg);
-            }, 1000);
-        }
-    }
-
-    setTimeout(() => {
-        terminal.innerHTML = '💸 Initializing money transfer... <span id="cursor">_</span>';
-        typeNextLine();
-    }, 1000);
-</script>
+<h1>Wow mannn You scanned it. Now what?</h1>
+<p>You really thought this was going somewhere?<br>Shems</p>
+<img src="https://media.giphy.com/media/3orieUe6ejxSFxYCXe/giphy.gif" alt="Twerking Meme">
 </body>
 </html>
